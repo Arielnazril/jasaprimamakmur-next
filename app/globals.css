@@ -10,6 +10,11 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  
+  /* Variabel Warna Khas Sika & JPM */
+  --color-sika-orange: #F5A623; /* Oranye/Kuning Sika */
+  --color-sika-dark: #1A1A1A;   /* Hitam Charcoal */
+  --color-sika-gray: #F9F9F9;   /* Abu-abu terang kontainer */
 }
 
 @media (prefers-color-scheme: dark) {
