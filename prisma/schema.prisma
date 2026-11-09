@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ... baris model User, Customer, Product, dll ke bawah tetap BIARKAN SAMA ...
+
+// Tabel Pengguna/Admin
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+}
+
+// Tabel Pelanggan (Untuk data Bill To & Penerima Jasa Kena Pajak)
+model Customer {
+  id        String   @id @default(cuid())
+  name      String   // Misal: REDZKY ARI PRAMANA / NAIRUZ SYIFA MUMTAZA
+  address   String   // Alamat lengkap
+  npwp      String?  // NPWP Pelanggan (opsional jika tidak ada)
+  nik       String?  // NIK Pelanggan
+  email     String?
+  invoices  Invoice[]
+}
+
+// Tabel Produk Sika
+model Product {
+  id          String   @id @default(cuid())
+  kodeBarang  String   @unique // Misal: 000000
+  name        String   // Misal: SIKA VISCOCRETE 3115N / TM ASPHALT BITUMEN
+  unit        String   // Misal: PAIL / KG
+  price       Float    // Harga Satuan Dasar
+  stock       Int      @default(0)
+  items       InvoiceItem[]
+}
+
+// Tabel Invoice / Faktur Pajak Utama
+model Invoice {
+  id            String   @id @default(cuid())
+  invoiceNo     String   @unique // Misal: 221
+  poNumber      String?
+  fakturNo      String?  @unique // Kode dan Nomor Seri Faktur Pajak
+  date          DateTime @default(now()) // Invoice Date / Ship Date
+  
+  customerId    String
+  customer      Customer @relation(fields: [customerId], references: [id])
+  
+  items         InvoiceItem[]
+  
+  // Rangkuman Harga (Bisa dihitung otomatis di backend)
+  subTotal      Float    @default(0) // Dasar Pengenaan Pajak
+  taxAmount     Float    @default(0) // Jumlah PPN
+  freight       Float    @default(0) // Ongkos Kirim (jika ada)
+  totalAmount   Float    @default(0) // Total Keseluruhan
+}
+
+// Tabel Item Produk di dalam 1 Invoice
+model InvoiceItem {
+  id          String   @id @default(cuid())
+  invoiceId   String
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id])
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id])
+  
+  quantity    Int
+  unitPrice   Float    // Harga saat transaksi terjadi (menghindari harga berubah di masa depan)
+  amount      Float    // quantity * unitPrice
+}

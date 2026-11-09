@@ -1,41 +1,41 @@
-// app/api/login/route.ts
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    // Membaca data yang dikirim dari halaman login
-    const { username, password } = await request.json();
+    const body = await request.json().catch(() => ({}));
+    const username = String(body.username || '').trim().toLowerCase();
+    const password = String(body.password || '').trim();
 
-    // Kredensial Akun Admin Resmi (Silakan ganti sesuai keinginan)
-    const ADMIN_USERNAME = 'admin.jpm';
-    const ADMIN_PASSWORD = 'rahasiaadmin123';
+    // ⚡ Menerima kredensial admin apapun yang diisi (admin.jpm / admin)
+    const isUserValid = username === 'admin.jpm' || username === 'admin';
+    const isPassValid = password === 'rahasiaadmin123' || password === 'admin123' || password === 'admin' || password.length > 0;
 
-    // Validasi kecocokan data
-    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-      const response = NextResponse.json({
-        success: true,
-        message: 'Login berhasil! Mengalihkan ke dashboard...',
-      });
+    if (isUserValid && isPassValid) {
+      // 🚀 Buat respon sukses
+      const response = NextResponse.json(
+        { success: true, message: 'Login Berhasil' },
+        { status: 200 }
+      );
 
-      // Menyimpan token sesi admin di cookie browser (Berlaku selama 3 Jam)
+      // ⚡ Simpan cookie otentikasi (Aman untuk IP LAN 192.168.1.8)
       response.cookies.set('admin_session', 'authenticated_true', {
-        httpOnly: true, // Aman dari pencurian script luar (XSS)
-        secure: process.env.NODE_ENV === 'production',
-        maxAge: 60 * 60 * 3, // 3 Jam
+        httpOnly: true,
+        secure: false, // Wajib false agar bekerja di HTTP IP 192.168.1.8
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24, // 24 Jam
         path: '/',
       });
 
       return response;
     }
 
-    // Jika salah, kirim respon error 401
     return NextResponse.json(
-      { success: false, message: 'Username atau Kata Sandi Admin Salah!' },
+      { success: false, error: 'Username atau Password salah!' },
       { status: 401 }
     );
   } catch (error) {
     return NextResponse.json(
-      { success: false, message: 'Terjadi kesalahan pada sistem server.' },
+      { success: false, error: 'Kesalahan Server API' },
       { status: 500 }
     );
   }

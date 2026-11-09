@@ -2,6 +2,7 @@
 
 import React from 'react';
 import NextLink from 'next/link';
+import Link from 'next/link';
 
 export default function PartnerProject() {
   
@@ -50,12 +51,22 @@ export default function PartnerProject() {
     <div className="w-full bg-[#FAFAFA] text-zinc-950 font-sans min-h-screen selection:bg-[#FFCD00] selection:text-zinc-950 antialiased">
       
       {/* ================= SEKSI 1: HERO SECTION ================= */}
-      <section className="bg-white border-b border-zinc-100 py-16 md:py-24 px-5 text-center">
-        <div className="max-w-4xl mx-auto">
+      <section className="relative bg-zinc-950 border-b border-zinc-100 py-20 md:py-32 px-5 text-center overflow-hidden">
+        {/* Gambar Latar Belakang Terkait Website Konstruksi */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25 transform scale-105"
+          style={{ 
+            backgroundImage: `url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2070')` 
+          }}
+        />
+        {/* Overlay Gradasi Gelap Elegan */}
+        <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-zinc-950/60 to-zinc-950" />
+
+        <div className="relative z-10 max-w-4xl mx-auto">
           <span className="text-[#FFCD00] font-black text-[10px] md:text-xs tracking-widest uppercase mb-3 block">
             PORTOFOLIO PROYEK
           </span>
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-zinc-950 leading-tight mb-4 max-w-3xl mx-auto">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-black uppercase tracking-tight text-white leading-tight mb-4 max-w-3xl mx-auto">
             Menampilkan dedikasi kami dalam membangun infrastruktur vital dengan presisi teknik tinggi.
           </h1>
           <div className="w-12 h-1 bg-[#FFCD00] mx-auto rounded-full mt-4" />
@@ -214,6 +225,85 @@ export default function PartnerProject() {
           </NextLink>
         </div>
       </section>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="bg-sika-dark text-white pt-16 sm:pt-20 pb-10 border-t-4 border-sika-orange">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* GRID UTAMA */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-16 pb-12 sm:pb-16 border-b border-gray-800/80">
+            
+            {/* Kolom 1: Perusahaan */}
+            <div className="space-y-5 text-left">
+              <div className="flex items-center gap-3">
+                <div className="h-10 w-auto bg-white/10 p-1 rounded-xl flex items-center justify-center border border-white/10 shadow-lg shadow-sika-orange/10">
+                  <img 
+                    src="/images/logo-sika1.png" 
+                    alt="Logo Sika" 
+                    className="h-full w-auto object-contain"
+                  />
+                </div>
+                <span className="font-black tracking-[0.25em] text-lg text-sika-orange uppercase italic">
+                  PT. JPM
+                </span>
+              </div>
+              <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm font-medium">
+                Membangun masa depan Indonesia dengan integritas, kualitas, dan inovasi konstruksi yang berkelanjutan. Kami berkomitmen memberikan solusi teknik terbaik bagi bangsa.
+              </p>
+            </div>
+
+            {/* Kolom 2: Tautan Cepat */}
+            <div className="space-y-5 text-left md:pl-10">
+              <h4 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-sika-orange">
+                Tautan Cepat
+              </h4>
+              <ul className="space-y-3 text-xs font-bold uppercase tracking-widest">
+                <li>
+                  <Link href="/" className="text-gray-400 hover:text-sika-orange transition-all duration-200 flex items-center group">
+                    <span className="w-0 group-hover:w-3 h-[2px] bg-sika-orange mr-0 group-hover:mr-2 transition-all duration-200 rounded"></span>
+                    Beranda
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/tentang-kami" className="text-gray-400 hover:text-sika-orange transition-all duration-200 flex items-center group">
+                    <span className="w-0 group-hover:w-3 h-[2px] bg-sika-orange mr-0 group-hover:mr-2 transition-all duration-200 rounded"></span>
+                    Tentang Kami
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Kolom 3: Kontak Support */}
+            <div className="space-y-5 text-left">
+              <h4 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-sika-orange">
+                Hubungi Kami
+              </h4>
+              <div className="group bg-zinc-900/60 p-5 sm:p-6 rounded-2xl border border-gray-800 hover:border-sika-orange/50 transition-all duration-300">
+                <span className="text-[9px] text-gray-500 font-black uppercase tracking-widest block mb-1.5">Email Official</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-base sm:text-lg">✉️</span>
+                  <span className="text-xs sm:text-sm font-bold text-gray-200 group-hover:text-sika-orange transition-colors break-all">
+                    info@jasaprimamakmur.com
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Hak Cipta */}
+          <div className="pt-8 sm:pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+            <div className="text-[9px] sm:text-[10px] font-black text-gray-500 tracking-[0.2em] uppercase">
+              © 2026 PT. Jasa Prima Makmur. Seluruh Hak Cipta Dilindungi.
+            </div>
+            <div className="flex gap-5 text-[9px] sm:text-[10px] font-black text-gray-500 uppercase tracking-widest">
+              <span className="hover:text-gray-300 cursor-pointer transition-colors">Privacy Policy</span>
+              <span className="hover:text-gray-300 cursor-pointer transition-colors">Terms of Service</span>
+            </div>
+          </div>
+          
+        </div>
+      </footer>
 
     </div>
   );

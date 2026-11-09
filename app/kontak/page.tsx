@@ -2,6 +2,7 @@
 
 import React from 'react';
 import NextLink from 'next/link';
+import Link from 'next/link';
 
 export default function ContactPage() {
   return (
@@ -195,6 +196,131 @@ export default function ContactPage() {
 
         </div>
       </section>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="bg-sika-dark text-white pt-16 sm:pt-20 pb-10 border-t-4 border-sika-orange relative overflow-hidden">
+      {/* Ornamen Akses Latar Belakang Subtle / Glow Halus */}
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-sika-orange/5 rounded-full filter blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-10 w-64 h-64 bg-amber-500/5 rounded-full filter blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        {/* GRID UTAMA */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-16 pb-12 sm:pb-16 border-b border-gray-800/80">
+          
+          {/* Kolom 1: Perusahaan */}
+          <div className="space-y-5 text-left">
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-auto bg-white/10 p-1.5 rounded-xl flex items-center justify-center border border-white/10 shadow-lg shadow-sika-orange/10 backdrop-blur-md">
+                <img 
+                  src="/images/logo-sika1.png" 
+                  alt="Logo Sika" 
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+              <span className="font-black tracking-[0.25em] text-lg text-sika-orange uppercase italic">
+                PT. JPM
+              </span>
+            </div>
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-sm font-medium">
+              Membangun masa depan Indonesia dengan integritas, kualitas, dan inovasi konstruksi yang berkelanjutan. Kami berkomitmen memberikan solusi teknik terbaik bagi bangsa.
+            </p>
+          </div>
+
+          {/* Kolom 2: Tautan Cepat */}
+          <div className="space-y-5 text-left md:pl-10">
+            <h4 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-sika-orange">
+              Tautan Cepat
+            </h4>
+            <ul className="space-y-3 text-xs font-bold uppercase tracking-widest">
+              <li>
+                <Link href="/" className="text-gray-400 hover:text-sika-orange transition-all duration-200 flex items-center group">
+                  <span className="w-0 group-hover:w-3 h-[2px] bg-sika-orange mr-0 group-hover:mr-2 transition-all duration-200 rounded"></span>
+                  Beranda
+                </Link>
+              </li>
+              <li>
+                <Link href="/tentang-kami" className="text-gray-400 hover:text-sika-orange transition-all duration-200 flex items-center group">
+                  <span className="w-0 group-hover:w-3 h-[2px] bg-sika-orange mr-0 group-hover:mr-2 transition-all duration-200 rounded"></span>
+                  Tentang Kami
+                </Link>
+              </li>
+              <li>
+                <Link href="/bisnis-kami" className="text-gray-400 hover:text-sika-orange transition-all duration-200 flex items-center group">
+                  <span className="w-0 group-hover:w-3 h-[2px] bg-sika-orange mr-0 group-hover:mr-2 transition-all duration-200 rounded"></span>
+                  Bisnis Kami
+                </Link>
+              </li>
+              {/* <li>
+                <Link href="/partner-project" className="text-gray-400 hover:text-sika-orange transition-all duration-200 flex items-center group">
+                  <span className="w-0 group-hover:w-3 h-[2px] bg-sika-orange mr-0 group-hover:mr-2 transition-all duration-200 rounded"></span>
+                  Partner Project
+                </Link>
+              </li> */}
+              <li>
+                <Link href="/kontak" className="text-gray-400 hover:text-sika-orange transition-all duration-200 flex items-center group">
+                  <span className="w-0 group-hover:w-3 h-[2px] bg-sika-orange mr-0 group-hover:mr-2 transition-all duration-200 rounded"></span>
+                  Kontak
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Kolom 3: Kontak Support */}
+          <div className="space-y-5 text-left">
+            <h4 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-sika-orange">
+              Hubungi Kami
+            </h4>
+            <div className="group bg-gradient-to-br from-zinc-900/90 to-zinc-950/90 p-5 sm:p-6 rounded-2xl border border-gray-800/80 hover:border-sika-orange/60 shadow-xl transition-all duration-300 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-sika-orange/5 rounded-full blur-xl group-hover:bg-sika-orange/10 transition-colors" />
+              
+              <span className="text-[9px] text-gray-400 font-black uppercase tracking-widest block mb-2.5">
+                Email Official
+              </span>
+              
+              <a 
+                href="mailto:info@jasaprimamakmur.com" 
+                className="flex items-center gap-3.5 group-hover:translate-x-0.5 transition-transform duration-200"
+              >
+                {/* ICON GMAIL VECTOR ELEGAN */}
+                <div className="w-10 h-10 rounded-xl bg-sika-orange/10 border border-sika-orange/20 flex items-center justify-center text-sika-orange shrink-0 group-hover:bg-sika-orange group-hover:text-sika-dark transition-all duration-300 shadow-md">
+                  <svg 
+                    className="w-5 h-5 transition-transform duration-300 group-hover:scale-110" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth="2" 
+                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" 
+                    />
+                  </svg>
+                </div>
+                
+                <span className="text-xs sm:text-sm font-bold text-gray-200 group-hover:text-sika-orange transition-colors break-all tracking-wide">
+                  info@jasaprimamakmur.com
+                </span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Hak Cipta */}
+        <div className="pt-8 sm:pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          <div className="text-[9px] sm:text-[10px] font-black text-gray-500 tracking-[0.2em] uppercase">
+            © 2026 PT. Jasa Prima Makmur. Seluruh Hak Cipta Dilindungi.
+          </div>
+          <div className="flex gap-5 text-[9px] sm:text-[10px] font-black text-gray-500 uppercase tracking-widest">
+            <span className="hover:text-gray-300 cursor-pointer transition-colors">Privacy Policy</span>
+            <span className="hover:text-gray-300 cursor-pointer transition-colors">Terms of Service</span>
+          </div>
+        </div>
+        
+      </div>
+    </footer>
 
     </div>
   );
